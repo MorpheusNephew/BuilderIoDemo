@@ -1,26 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { builder, BuilderComponent } from '@builder.io/react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const builderIoApiKey = process.env.REACT_APP_BUILDER_IO_API_KEY;
+const builderDemoPageEntry = process.env.REACT_APP_BUILDER_DEMO_PAGE_ENTRY
+
+if (builderIoApiKey) {
+  builder.init(builderIoApiKey);
 }
+
+const App = () => (
+  <BuilderComponent
+    model="page"
+          entry={builderDemoPageEntry} />
+);
 
 export default App;
